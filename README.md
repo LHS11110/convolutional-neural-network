@@ -10,7 +10,7 @@ $$
 O_{i, j, k} = \sum^{C - 1}_{l = 0} \sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{n = 0} I_{S \cdot i + n, S \cdot j + m, l} \cdot K_{n, m, l, k}
 
 $$
-$O, I, K$는 각각 feature map, input, kernel을 의미하고, $C$는 채널 수, $K_h$와 $K_w$는 각각 kernel의 높이와 너비를 의미한다. 이 식에서 볼 수 있듯 3차원 텐서인 kernel은 여러 개가 주어질 수 있으며, kernel의 개수가 1인 경우 특성맵은 그 결과가 2차원 행렬로 나타나게 된다. 위 식에서 kernel을 의미하는 $K$가 4차원 텐서처럼 나타나는 이유는 그냥 여러 개의 kernel 중 $k$번째 kernel을 나타내기 위함이다. 즉, $K$는 그냥 kernel이 아니라 kernel들의 집합이다. $S$는 스트라이드(stride)를 의미한다.
+여기서 $O, I, K$는 각각 feature map, input, kernel을 의미하고, $C$는 채널 수, $K_h$와 $K_w$는 각각 kernel의 높이와 너비를 의미한다. 이 식에서 볼 수 있듯 3차원 텐서인 kernel은 여러 개가 주어질 수 있으며, kernel의 개수가 1인 경우 특성맵은 그 결과가 2차원 행렬로 나타나게 된다. 위 식에서 kernel을 의미하는 $K$가 4차원 텐서처럼 나타나는 이유는 그냥 여러 개의 kernel 중 $k$번째 kernel을 나타내기 위함이다. 즉, $K$는 그냥 kernel이 아니라 kernel들의 집합이다. $S$는 스트라이드(stride)를 의미한다.
 ### 특성 맵(feature map)의 크기
 $$
 \begin{aligned}
