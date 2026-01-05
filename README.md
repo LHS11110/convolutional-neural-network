@@ -20,16 +20,16 @@ O_c &= K_c
 위 식은 특성 맵의 크기가 다른 변수들과 어떤 관계에 있는지 보여준다. $w$는 너비, $h$는 높이, $c$는 채널을 의미한다. $K_c$는 단순히 kernel의 개수를 의미한다고 볼 수 있다. 물론 위 식은 $S = 1$이고 zero-padding을 하지 않은 경우에만 성립한다. 여기서 $S$가 $1$이 아닌 경우까지 포함하는 경우에는 다음과 같다.
 ```math
 \begin{aligned}
-O_w &= \mathrm{floor}(\frac{I_w - K_w}{S}) + 1 \\
-O_h &= \mathrm{floor}(\frac{I_h - K_h}{S}) + 1 \\
+O_w &= \mathrm{floor}\left(\frac{I_w - K_w}{S}\right) + 1 \\
+O_h &= \mathrm{floor}\left(\frac{I_h - K_h}{S}\right) + 1 \\
 O_c &= K_c
 \end{aligned}
 ```
 여기에 zero-padding까지 고려하면 다음과 같다. $P$는 패딩의 폭이다.
 ```math
 \begin{aligned}
-O_w &= \mathrm{floor}(\frac{I_w - K_w + 2P}{S}) + 1 \\
-O_h &= \mathrm{floor}(\frac{I_h - K_h + 2P}{S}) + 1 \\
+O_w &= \mathrm{floor}\left(\frac{I_w - K_w + 2P}{S}\right) + 1 \\
+O_h &= \mathrm{floor}\left(\frac{I_h - K_h + 2P}{S}\right) + 1 \\
 O_c &= K_c
 \end{aligned}
 ```
