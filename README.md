@@ -5,7 +5,9 @@
 ### 합성곱 연산
 합성곱 연산에는 input과 kernel 두 개념이 필요하다. kernel은 filter라고도 불리며 input이 $n \times m \times l$이라면 $x \leq n, y \leq m$에 대해 kernel은 크기가 $x \times y$이고, 개수는 총 $l$개인 행렬들의 모임이다. 따라서 kernel은 $x \times y \times l$인 3차원 텐서라고도 할 수 있겠다. kernel의 각 행렬은 채널 차원을 가지지 않으며 각 높이와 너비 차원의 길이가 input의 높이, 너비 차원의 길이보다 짧아야 하고, 그 크기가 모두 같아야 한다. 여기서 커널의 높이와 너비가 대부분 홀수인 이유는 중앙을 만들어주기 위해서다.
 kernel은 보통 $3 \times 3$ 또는 $5 \times 5$의 크기를 갖도록 구현한다. 합성곱 연산을 거친 후의 결과물을 특성 맵(feature map)이라고 하며, 이 또한 마찬가지로 채널 차원을 갖지 않고 높이와 너비 차원만 주어진다.
-```math O_{i, j, k} = \sum^{C - 1}_{l = 0} \sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{n = 0} I_{S \cdot i + n, S \cdot j + m, l} \cdot K_{n, m, l, k} ```
+```math
+O_{i, j, k} = \sum^{C - 1}_{l = 0} \sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{n = 0} I_{S \cdot i + n, S \cdot j + m, l} \cdot K_{n, m, l, k}
+```
 여기서 $O, I, K$는 각각 feature map, input, kernel을 의미하고, $C$는 채널 수, $K_h$와 $K_w$는 각각 kernel의 높이와 너비를 의미한다. 이 식에서 볼 수 있듯 3차원 텐서인 kernel은 여러 개가 주어질 수 있으며, kernel의 개수가 1인 경우 특성맵은 그 결과가 2차원 행렬로 나타나게 된다. 위 식에서 kernel을 의미하는 $K$가 4차원 텐서처럼 나타나는 이유는 그냥 여러 개의 kernel 중 $k$번째 kernel을 나타내기 위함이다. 즉, $K$는 그냥 kernel이 아니라 kernel들의 집합이다. $S$는 스트라이드(stride)를 의미한다.
 ### 특성 맵(feature map)의 크기
 $$ \begin{aligned}
