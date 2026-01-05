@@ -66,7 +66,12 @@ O_{i, j, k} = \left(\sum^{C - 1}_{l = 0} \sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{
 합성곱 신경망은 일반적으로 합성곱 층(합성곱 연산 + 활성화 함수) 다음에 풀링 층을 추가하여 구현된다. 풀링 층은 feature map의 크기를 줄이는 역할을 하는 층으로 보통 두 함수 $\mathrm{max}, \mathrm{avg}$를 통해 구현된다. pooling 또한 합성곱 층의 kernel, stride 개념을 사용하며, $I$를 합성곱 층을 통과한 결과인 3차원 텐서, $O$를 pooling 연산 후의 결과인 행렬이라고 했을 때 $\mathrm{max}$를 사용한 정의는 다음과 같다.
 ```math
 
-
+O_{i, j, k} = \mathrm{max}([I_{S \cdot i + n, S \cdot j + m, k}\ \mathrm{for}\ n\ \mathrm{in}\ \mathrm{range}(0 \ldots K_h - 1)\ \mathrm{for}\ m\ \mathrm{in}\ \mathrm{range}(0 \ldots K_w - 1)])
 
 ```
-풀링 연산은 채널 수를 그대로 둔 채 너비와 높이를 줄이는 연산이라고도 볼 수 있다. 이는 각 feature map은 kernel에 의해 특징이 증폭된 값들의 행렬이므로 kernel의 개수만큼 있어야 하는 것이 그 이유라고 볼 수 있다.
+따라서 pooling의 kernel은 다루고자 하는 영역의 크기를, 풀링 연산은 채널 수를 그대로 둔 채 너비와 높이를 줄이는 연산이라고도 볼 수 있다. 이는 각 feature map은 kernel에 의해 특징이 증폭된 값들의 행렬이므로 kernel의 개수만큼 있어야 하는 것이 그 이유라고 볼 수 있다. 다음은 $\mathrm{avg}$를 이용한 구현이다.
+```math
+
+O_{i, j, k} = \frac{\sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{n = 0} I_{S \cdot i + n, S \cdot j + m, k}}{K_w \cdot K_h}
+
+```

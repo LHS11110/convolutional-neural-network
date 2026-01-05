@@ -1,0 +1,1 @@
+print([(i, j, k) for i in range(10) for j in range(2) for k in range(3)])
