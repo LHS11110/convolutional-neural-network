@@ -63,7 +63,7 @@ a_{n0} & a_{n1} & \cdots & a_{nm}
 O_{i, j, k} = \left(\sum^{C - 1}_{l = 0} \sum^{K_w - 1}_{m = 0} \sum^{K_h - 1}_{n = 0} I_{S \cdot i + n, S \cdot j + m, l} \cdot K_{n, m, l, k}\right) + b_k
 ```
 ### 풀링(pooling)
-합성곱 신경망은 일반적으로 합성곱 층(합성곱 연산 + 활성화 함수) 다음에 풀링 층을 추가하여 구현된다. 풀링 층은 feature map의 크기를 줄이는 역할을 하는 층으로 보통 두 함수 $\mathrm{max}, \mathrm{avg}$를 통해 구현된다. pooling 또한 합성곱 층의 kernel, stride 개념을 사용하며, $I$를 합성곱 층을 통과한 결과인 3차원 텐서, $O$를 pooling 연산 후의 결과인 행렬이라고 했을 때 $\mathrm{max}$를 사용한 정의는 다음과 같다.
+합성곱 신경망은 일반적으로 합성곱 층(합성곱 연산 + 활성화 함수) 다음에 풀링 층을 추가하여 구현된다. 풀링 층은 feature map의 크기를 줄이는 역할을 하는 층으로 보통 두 함수 $\mathrm{max}, \mathrm{avg}$를 통해 구현된다. pooling 또한 합성곱 층의 kernel, stride 개념을 사용하며, $I$를 합성곱 층을 통과한 결과인 3차원 텐서, $O$를 pooling 연산 후의 결과라고 했을 때 $\mathrm{max}$를 사용한 정의는 다음과 같다.
 ```math
 
 O_{i, j, k} = \mathrm{max}([I_{S \cdot i + n, S \cdot j + m, k}\ \mathrm{for}\ n\ \mathrm{in}\ \mathrm{range}(0 \ldots K_h - 1)\ \mathrm{for}\ m\ \mathrm{in}\ \mathrm{range}(0 \ldots K_w - 1)])
